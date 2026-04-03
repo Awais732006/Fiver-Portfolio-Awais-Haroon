@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Awais — Professional Resume Writer</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --navy: #0D1B2E;
+  --blue: #2A7DE1;
+  --blue-light: #E8F1FB;
+  --text: #1A1A2E;
+  --muted: #6B7A8D;
+  --border: #E5EAF0;
+  --surface: #F8FAFC;
+  --white: #FFFFFF;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family:'DM Sans', sans-serif;
+  color: var(--text);
+  background: var(--white);
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top:0; left:0; right:0; z-index:100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 5%;
+  height: 64px;
+  display: flex; align-items:center; justify-content:space-between;
+}
+.nav-logo {
+  font-family:'Cormorant Garamond', serif;
+  font-size: 22px; font-weight:700; color: var(--navy);
+  letter-spacing: -0.3px;
+}
+.nav-logo span { color: var(--blue); }
+.nav-links { display:flex; gap:32px; list-style:none; }
+.nav-links a {
+  font-size:13px; font-weight:500; color: var(--muted);
+  text-decoration:none; letter-spacing:0.3px;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--navy); }
+.nav-cta {
+  background: var(--navy); color:#fff;
+  padding: 9px 20px; border-radius:6px;
+  font-size:13px; font-weight:500;
+  text-decoration:none; transition: background 0.2s;
+}
+.nav-cta:hover { background: var(--blue); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display:flex; align-items:center;
+  padding: 100px 5% 80px;
+  position:relative; overflow:hidden;
+}
+.hero-bg {
+  position:absolute; right:-5%; top:10%;
+  width:55%; height:80%;
+  background: var(--surface);
+  border-radius:24px 0 0 24px;
+  z-index:0;
+}
+.hero-dots {
+  position:absolute; right:5%; top:15%;
+  width:200px; height:200px;
+  background-image: radial-gradient(circle, #CBD8EA 1.5px, transparent 1.5px);
+  background-size:24px 24px;
+  opacity:0.6; z-index:1;
+}
+.hero-content { position:relative; z-index:2; max-width:560px; }
+.hero-tag {
+  display:inline-flex; align-items:center; gap:8px;
+  background: var(--blue-light); border-radius:20px;
+  padding:6px 14px; margin-bottom:28px;
+  font-size:12px; font-weight:500; color: var(--blue);
+  letter-spacing:0.5px;
+}
+.hero-tag .dot { width:6px; height:6px; border-radius:50%; background:var(--blue); }
+.hero h1 {
+  font-family:'Cormorant Garamond', serif;
+  font-size: clamp(52px, 6vw, 80px);
+  font-weight:700; line-height:1.0;
+  color: var(--navy); letter-spacing:-1.5px;
+  margin-bottom:12px;
+}
+.hero h1 em { color: var(--blue); font-style:italic; }
+.hero .sub {
+  font-size:16px; color: var(--muted); line-height:1.7;
+  margin-bottom:36px; font-weight:300; max-width:440px;
+}
+.hero-btns { display:flex; gap:14px; flex-wrap:wrap; }
+.btn-primary {
+  background: var(--navy); color:#fff;
+  padding:14px 28px; border-radius:8px;
+  font-size:14px; font-weight:500;
+  text-decoration:none; transition:all 0.2s;
+  display:inline-flex; align-items:center; gap:8px;
+}
+.btn-primary:hover { background: var(--blue); transform:translateY(-1px); }
+.btn-secondary {
+  background: transparent; color: var(--navy);
+  padding:14px 28px; border-radius:8px;
+  border:1.5px solid var(--border);
+  font-size:14px; font-weight:500;
+  text-decoration:none; transition:all 0.2s;
+}
+.btn-secondary:hover { border-color: var(--navy); }
+.hero-stats {
+  display:flex; gap:40px; margin-top:52px;
+  padding-top:40px; border-top:1px solid var(--border);
+}
+.hero-stat .num {
+  font-family:'Cormorant Garamond', serif;
+  font-size:40px; font-weight:700; color: var(--navy);
+  line-height:1;
+}
+.hero-stat .label { font-size:12px; color: var(--muted); margin-top:4px; }
+
+/* ── RESUME CARD (hero right) ── */
+.hero-visual {
+  position:absolute; right:6%; top:50%; transform:translateY(-50%);
+  z-index:3; width:320px;
+}
+.resume-card {
+  background:#fff; border-radius:12px;
+  border:1px solid var(--border);
+  overflow:hidden;
+  box-shadow: 0 20px 60px rgba(13,27,46,0.10);
+  animation: float 4s ease-in-out infinite;
+}
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+.rc-header { background: var(--navy); padding:16px 18px; display:flex; align-items:center; gap:10px; border-top:4px solid var(--blue); }
+.rc-avatar { width:36px;height:36px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:700;color:#fff; }
+.rc-name { font-size:13px;font-weight:600;color:#fff; }
+.rc-role { font-size:10px;color:#90B8DA; }
+.rc-body { padding:14px 18px; }
+.rc-sec { font-size:8px;font-weight:700;color:var(--navy);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:3px; }
+.rc-line { height:1.5px;background:var(--blue);margin-bottom:6px; }
+.rc-text { font-size:8px;color:#4A6070;line-height:1.5;margin-bottom:8px; }
+.rc-job { font-size:9px;font-weight:600;color:var(--navy);margin-bottom:1px; }
+.rc-meta { font-size:8px;color:#8A9BB0;margin-bottom:3px; }
+.rc-bullet { font-size:8px;color:#4A6070;padding-left:8px;position:relative;margin-bottom:2px; }
+.rc-bullet::before { content:'•';position:absolute;left:0;color:var(--blue); }
+.rc-skills { display:flex;flex-wrap:wrap;gap:3px;margin-top:4px; }
+.rc-skill { background:var(--blue-light);border-radius:8px;padding:2px 7px;font-size:7px;color:var(--navy);font-weight:500; }
+.rc-badge {
+  position:absolute; top:-12px; right:-12px;
+  background:var(--blue); color:#fff;
+  border-radius:20px; padding:6px 12px;
+  font-size:11px; font-weight:600;
+  box-shadow:0 4px 16px rgba(42,125,225,0.35);
+}
+
+/* ── SECTION BASE ── */
+section { padding:100px 5%; }
+.section-tag {
+  display:inline-flex; align-items:center; gap:6px;
+  font-size:11px; font-weight:500; letter-spacing:2px;
+  text-transform:uppercase; color:var(--blue);
+  margin-bottom:16px;
+}
+.section-tag::before { content:''; width:24px;height:1.5px;background:var(--blue); }
+h2.section-title {
+  font-family:'Cormorant Garamond', serif;
+  font-size: clamp(36px, 4vw, 52px);
+  font-weight:700; color:var(--navy);
+  line-height:1.1; letter-spacing:-1px;
+  margin-bottom:16px;
+}
+.section-sub { font-size:15px; color:var(--muted); line-height:1.7; max-width:520px; }
+
+/* ── ABOUT ── */
+#about { background:var(--surface); }
+.about-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+.about-left {}
+.about-right { display:flex; flex-direction:column; gap:20px; }
+.about-card {
+  background:#fff; border:1px solid var(--border); border-radius:12px;
+  padding:20px 24px; display:flex; gap:16px; align-items:flex-start;
+  transition:box-shadow 0.2s;
+}
+.about-card:hover { box-shadow:0 8px 30px rgba(13,27,46,0.08); }
+.about-icon {
+  width:40px;height:40px;border-radius:8px;
+  background:var(--blue-light); flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;
+}
+.about-card h3 { font-size:14px;font-weight:500;color:var(--navy);margin-bottom:4px; }
+.about-card p { font-size:13px;color:var(--muted);line-height:1.6; }
+.about-quote {
+  font-family:'Cormorant Garamond', serif;
+  font-size:22px; font-style:italic; color:var(--navy);
+  line-height:1.5; border-left:3px solid var(--blue);
+  padding-left:20px; margin:28px 0;
+}
+
+/* ── SERVICES ── */
+#services {}
+.services-header { display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:52px;flex-wrap:wrap;gap:20px; }
+.packages-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.pkg {
+  border:1px solid var(--border); border-radius:16px;
+  padding:32px 28px; position:relative;
+  transition:all 0.25s; cursor:default;
+}
+.pkg:hover { box-shadow:0 16px 48px rgba(13,27,46,0.10); transform:translateY(-4px); }
+.pkg.featured {
+  border:2px solid var(--blue);
+  background: var(--navy);
+}
+.pkg-badge {
+  position:absolute; top:-13px; left:50%; transform:translateX(-50%);
+  background:var(--blue); color:#fff;
+  padding:4px 16px; border-radius:20px;
+  font-size:11px; font-weight:600; white-space:nowrap;
+}
+.pkg-name { font-size:12px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:10px; }
+.pkg.featured .pkg-name { color:#90B8DA; }
+.pkg-price {
+  font-family:'Cormorant Garamond', serif;
+  font-size:42px;font-weight:700;color:var(--navy);line-height:1;margin-bottom:4px;
+}
+.pkg.featured .pkg-price { color:#fff; }
+.pkg-price span { font-size:16px;font-weight:400; }
+.pkg-desc { font-size:13px;color:var(--muted);margin-bottom:24px;line-height:1.5; }
+.pkg.featured .pkg-desc { color:#90B8DA; }
+.pkg-divider { height:1px;background:var(--border);margin-bottom:20px; }
+.pkg.featured .pkg-divider { background:#1E3A5A; }
+.pkg-features { list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:28px; }
+.pkg-features li { display:flex;gap:10px;font-size:13px;color:var(--muted); }
+.pkg.featured .pkg-features li { color:#C0D4E8; }
+.pkg-features li .ck { color:var(--blue);font-weight:600;flex-shrink:0; }
+.pkg-btn {
+  display:block;text-align:center;text-decoration:none;
+  padding:12px;border-radius:8px;font-size:13px;font-weight:500;
+  border:1.5px solid var(--border); color:var(--navy);
+  transition:all 0.2s;
+}
+.pkg-btn:hover { background:var(--navy);color:#fff;border-color:var(--navy); }
+.pkg.featured .pkg-btn { background:var(--blue);color:#fff;border-color:var(--blue); }
+.pkg.featured .pkg-btn:hover { background:#1E6DC8; }
+
+/* ── PORTFOLIO ── */
+#portfolio { background:var(--surface); }
+.portfolio-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:52px; }
+.port-card {
+  background:#fff; border-radius:12px; overflow:hidden;
+  border:1px solid var(--border); transition:all 0.25s;
+}
+.port-card:hover { box-shadow:0 16px 48px rgba(13,27,46,0.10); transform:translateY(-4px); }
+.port-preview {
+  height:220px; background:var(--navy);
+  display:flex; align-items:center; justify-content:center;
+  position:relative; overflow:hidden;
+  border-top:4px solid var(--blue);
+}
+.port-preview.light { background:#F7F9FC; }
+.mini-resume {
+  width:140px; background:#fff; border-radius:6px;
+  overflow:hidden; box-shadow:0 8px 24px rgba(0,0,0,0.15);
+}
+.mr-head { background:var(--navy); padding:10px; border-top:3px solid var(--blue); }
+.mr-av { width:24px;height:24px;border-radius:50%;background:var(--blue);margin:0 auto 4px;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;font-weight:700; }
+.mr-n { font-size:7px;color:#fff;text-align:center;font-weight:600; }
+.mr-r { font-size:6px;color:#90B8DA;text-align:center; }
+.mr-body { padding:8px; }
+.mr-s { font-size:5px;font-weight:700;color:var(--navy);letter-spacing:1px;text-transform:uppercase; }
+.mr-d { height:1px;background:var(--blue);margin:2px 0 4px; }
+.mr-t { font-size:5.5px;color:#334A60;line-height:1.4;margin-bottom:4px; }
+.mr-jt { font-size:6px;font-weight:700;color:var(--navy); }
+.mr-bul { font-size:5.5px;color:#334A60;padding-left:6px;position:relative; }
+.mr-bul::before{content:'•';position:absolute;left:0;color:var(--blue);}
+.mr-pills{display:flex;flex-wrap:wrap;gap:2px;margin-top:3px;}
+.mr-pill{background:var(--blue-light);border-radius:4px;padding:1px 4px;font-size:5px;color:var(--navy);}
+.port-info { padding:18px 20px; }
+.port-tag { font-size:11px;font-weight:500;color:var(--blue);letter-spacing:0.5px;margin-bottom:6px; }
+.port-title { font-size:15px;font-weight:500;color:var(--navy);margin-bottom:4px; }
+.port-desc { font-size:12px;color:var(--muted);line-height:1.5; }
+
+/* ── TESTIMONIALS ── */
+#testimonials {}
+.test-header { text-align:center;margin-bottom:60px; }
+.test-header .section-tag { justify-content:center; }
+.test-header .section-tag::before { display:none; }
+.test-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.test-card {
+  background:#fff; border:1px solid var(--border); border-radius:16px;
+  padding:28px; transition:all 0.25s;
+}
+.test-card:hover { box-shadow:0 12px 40px rgba(13,27,46,0.08); transform:translateY(-3px); }
+.test-card.featured { background:var(--navy); border-color:var(--navy); }
+.test-stars { color:#F5C518;font-size:14px;letter-spacing:2px;margin-bottom:14px; }
+.test-text {
+  font-family:'Cormorant Garamond', serif;
+  font-size:18px; color:var(--navy); line-height:1.6;
+  font-style:italic; margin-bottom:20px;
+}
+.test-card.featured .test-text { color:#fff; }
+.test-author { display:flex;align-items:center;gap:10px; }
+.test-av {
+  width:36px;height:36px;border-radius:50%;
+  background:var(--blue-light);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:600;color:var(--blue);flex-shrink:0;
+}
+.test-card.featured .test-av { background:#1E3A5A;color:#90B8DA; }
+.test-name { font-size:13px;font-weight:500;color:var(--navy); }
+.test-card.featured .test-name { color:#fff; }
+.test-role { font-size:11px;color:var(--muted); }
+.test-card.featured .test-role { color:#90B8DA; }
+
+/* ── CONTACT ── */
+#contact { background:var(--navy); position:relative; overflow:hidden; }
+.contact-dots {
+  position:absolute;right:0;top:0;width:300px;height:100%;
+  background-image:radial-gradient(circle,rgba(255,255,255,0.06) 1.5px,transparent 1.5px);
+  background-size:28px 28px;
+}
+.contact-inner { position:relative;z-index:2;text-align:center;max-width:600px;margin:0 auto; }
+.contact-inner .section-tag { color:#90B8DA;justify-content:center; }
+.contact-inner .section-tag::before { background:#90B8DA; }
+.contact-inner h2 { color:#fff; }
+.contact-inner .section-sub { color:#90B8DA;margin:0 auto 40px; }
+.contact-btns { display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:48px; }
+.btn-white {
+  background:#fff;color:var(--navy);
+  padding:14px 32px;border-radius:8px;
+  font-size:14px;font-weight:500;text-decoration:none;
+  transition:all 0.2s; display:inline-flex;align-items:center;gap:8px;
+}
+.btn-white:hover { background:var(--blue);color:#fff; }
+.btn-ghost {
+  background:transparent;color:#fff;
+  padding:14px 32px;border-radius:8px;
+  border:1.5px solid rgba(255,255,255,0.2);
+  font-size:14px;font-weight:500;text-decoration:none;
+  transition:all 0.2s;
+}
+.btn-ghost:hover { border-color:#fff; }
+.contact-info { display:flex;justify-content:center;gap:40px;flex-wrap:wrap; }
+.contact-item { text-align:center; }
+.contact-item .ci-label { font-size:11px;color:#5A7A9A;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px; }
+.contact-item .ci-val { font-size:14px;color:#C0D4E8;font-weight:400; }
+
+/* ── FOOTER ── */
+footer {
+  background:#070E1A; padding:24px 5%;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
+}
+.footer-logo { font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:#fff; }
+.footer-logo span { color:var(--blue); }
+.footer-copy { font-size:12px;color:#3A5A7A; }
+
+/* ── ANIMATIONS ── */
+.fade-up {
+  opacity:0; transform:translateY(24px);
+  animation:fadeUp 0.7s ease forwards;
+}
+@keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
+.fade-up:nth-child(1){animation-delay:0.1s}
+.fade-up:nth-child(2){animation-delay:0.2s}
+.fade-up:nth-child(3){animation-delay:0.3s}
+.fade-up:nth-child(4){animation-delay:0.4s}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .hero-visual{display:none;}
+  .about-grid,.packages-grid,.portfolio-grid,.test-grid{grid-template-columns:1fr;}
+  .hero-stats{gap:24px;}
+  .services-header{flex-direction:column;align-items:flex-start;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Awais<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="https://www.fiverr.com" class="nav-cta">Order on Fiverr →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-dots"></div>
+
+  <div class="hero-content">
+    <div class="hero-tag fade-up"><div class="dot"></div>Professional Resume Writer</div>
+    <h1 class="fade-up">Your Resume,<br><em>Reimagined.</em></h1>
+    <p class="sub fade-up">I craft ATS-optimized resumes and cover letters that get past screening software — and land you in front of real hiring managers.</p>
+    <div class="hero-btns fade-up">
+      <a href="#services" class="btn-primary">View Packages →</a>
+      <a href="#portfolio" class="btn-secondary">See My Work</a>
+    </div>
+    <div class="hero-stats fade-up">
+      <div class="hero-stat"><div class="num">200+</div><div class="label">Happy clients</div></div>
+      <div class="hero-stat"><div class="num">5.0★</div><div class="label">Average rating</div></div>
+      <div class="hero-stat"><div class="num">98%</div><div class="label">ATS pass rate</div></div>
+      <div class="hero-stat"><div class="num">24h</div><div class="label">Delivery time</div></div>
+    </div>
+  </div>
+
+  <!-- Floating resume card -->
+  <div class="hero-visual">
+    <div style="position:relative;">
+      <div class="rc-badge">✓ ATS Optimized</div>
+      <div class="resume-card">
+        <div class="rc-header">
+          <div class="rc-avatar">JD</div>
+          <div><div class="rc-name">James Davidson</div><div class="rc-role">Senior Product Manager</div></div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-sec">Professional Summary</div>
+          <div class="rc-line"></div>
+          <div class="rc-text">Results-driven PM with 8+ years delivering $12M ARR growth across SaaS platforms. Expert in Agile, roadmapping, and cross-functional leadership.</div>
+          <div class="rc-sec">Experience</div>
+          <div class="rc-line"></div>
+          <div class="rc-job">Senior PM — TechNova Inc.</div>
+          <div class="rc-meta">2020 – Present · San Francisco</div>
+          <div class="rc-bullet">Led team of 14 — DAU ↑38%</div>
+          <div class="rc-bullet">Reduced churn by 22%</div>
+          <div class="rc-bullet">Defined $40M Series B roadmap</div>
+          <div class="rc-sec" style="margin-top:8px;">Skills</div>
+          <div class="rc-line"></div>
+          <div class="rc-skills">
+            <span class="rc-skill">Agile</span><span class="rc-skill">Roadmapping</span>
+            <span class="rc-skill">SQL</span><span class="rc-skill">A/B Testing</span>
+            <span class="rc-skill">OKRs</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-left">
+      <div class="section-tag">About Me</div>
+      <h2 class="section-title">I Help People<br>Get Hired.</h2>
+      <div class="about-quote">"Your experience is valuable. My job is to make the world see it."</div>
+      <p class="section-sub">I'm Awais — a professional resume writer and career branding specialist. I've helped 200+ professionals across tech, finance, marketing, and more land interviews at top companies. Every resume I write is tailored, keyword-rich, and built to pass ATS software on the first scan.</p>
+    </div>
+    <div class="about-right">
+      <div class="about-card">
+        <div class="about-icon">🎯</div>
+        <div>
+          <h3>ATS Keyword Optimization</h3>
+          <p>Every resume is researched and optimized with role-specific keywords that beat automated screening systems.</p>
+        </div>
+      </div>
+      <div class="about-card">
+        <div class="about-icon">✍️</div>
+        <div>
+          <h3>Tailored to Your Voice</h3>
+          <p>No templates. Each resume is written from scratch, aligned to your story, industry, and target role.</p>
+        </div>
+      </div>
+      <div class="about-card">
+        <div class="about-icon">⚡</div>
+        <div>
+          <h3>Fast & Reliable Delivery</h3>
+          <p>24-hour turnaround available. You get DOCX + PDF, fully editable, ready to send immediately.</p>
+        </div>
+      </div>
+      <div class="about-card">
+        <div class="about-icon">🔄</div>
+        <div>
+          <h3>Unlimited Revisions</h3>
+          <p>Not 100% happy? I revise until you are. Your satisfaction is the only metric that matters.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header">
+    <div>
+      <div class="section-tag">Packages</div>
+      <h2 class="section-title">Pick Your Plan</h2>
+    </div>
+    <p style="font-size:14px;color:var(--muted);max-width:280px;line-height:1.6;">All packages include editable files, ATS formatting, and professional writing.</p>
+  </div>
+
+  <div class="packages-grid">
+
+    <!-- Basic -->
+    <div class="pkg">
+      <div class="pkg-name">Basic</div>
+      <div class="pkg-price"><span>PKR </span>2,923</div>
+      <div class="pkg-desc">Perfect for fresh graduates and students entering the job market.</div>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-features">
+        <li><span class="ck">✓</span> 1-page professional resume</li>
+        <li><span class="ck">✓</span> ATS-friendly format & structure</li>
+        <li><span class="ck">✓</span> Editable DOCX + PDF</li>
+        <li><span class="ck">✓</span> 2 revisions</li>
+        <li><span class="ck">✓</span> 1-day delivery</li>
+      </ul>
+      <a href="https://www.fiverr.com" class="pkg-btn">Order Basic →</a>
+    </div>
+
+    <!-- Standard (featured) -->
+    <div class="pkg featured">
+      <div class="pkg-badge">Most Popular</div>
+      <div class="pkg-name">Standard</div>
+      <div class="pkg-price"><span>PKR </span>7,306</div>
+      <div class="pkg-desc">Ideal for mid-level professionals ready to level up their career.</div>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-features">
+        <li><span class="ck">✓</span> 2-page professional resume</li>
+        <li><span class="ck">✓</span> ATS-optimized + keywords</li>
+        <li><span class="ck">✓</span> Tailored cover letter</li>
+        <li><span class="ck">✓</span> Editable DOCX + PDF</li>
+        <li><span class="ck">✓</span> Resume review & critique</li>
+        <li><span class="ck">✓</span> 3 revisions · 2-day delivery</li>
+      </ul>
+      <a href="https://www.fiverr.com" class="pkg-btn">Order Standard →</a>
+    </div>
+
+    <!-- Premium -->
+    <div class="pkg">
+      <div class="pkg-name">Premium</div>
+      <div class="pkg-price"><span>PKR </span>14,612</div>
+      <div class="pkg-desc">Complete career branding for serious job seekers targeting top roles.</div>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-features">
+        <li><span class="ck">✓</span> 2-page professional resume</li>
+        <li><span class="ck">✓</span> ATS-optimized + keywords</li>
+        <li><span class="ck">✓</span> Tailored cover letter</li>
+        <li><span class="ck">✓</span> LinkedIn profile full rewrite</li>
+        <li><span class="ck">✓</span> Editable DOCX + PDF</li>
+        <li><span class="ck">✓</span> Unlimited revisions · 4-day delivery</li>
+      </ul>
+      <a href="https://www.fiverr.com" class="pkg-btn">Order Premium →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div style="text-align:center;margin-bottom:52px;">
+    <div class="section-tag" style="justify-content:center;">
+      <span style="display:none"></span>Sample Work
+    </div>
+    <h2 class="section-title">Resume Samples</h2>
+    <p class="section-sub" style="margin:0 auto;">A selection of resumes I've written across industries and experience levels.</p>
+  </div>
+
+  <div class="portfolio-grid">
+
+    <div class="port-card">
+      <div class="port-preview">
+        <div class="mini-resume">
+          <div class="mr-head">
+            <div class="mr-av">JD</div>
+            <div class="mr-n">James Davidson</div>
+            <div class="mr-r">Senior Product Manager</div>
+          </div>
+          <div class="mr-body">
+            <div class="mr-s">Summary</div><div class="mr-d"></div>
+            <div class="mr-t">Results-driven PM with 8+ yrs, $12M ARR growth across SaaS platforms.</div>
+            <div class="mr-s">Experience</div><div class="mr-d"></div>
+            <div class="mr-jt">Senior PM — TechNova Inc.</div>
+            <div class="mr-bul">Led team of 14 — DAU ↑38%</div>
+            <div class="mr-bul">Reduced churn by 22%</div>
+            <div class="mr-s" style="margin-top:4px;">Skills</div><div class="mr-d"></div>
+            <div class="mr-pills"><span class="mr-pill">Agile</span><span class="mr-pill">Roadmapping</span><span class="mr-pill">SQL</span><span class="mr-pill">OKRs</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="port-info">
+        <div class="port-tag">Technology · Senior Level</div>
+        <div class="port-title">Product Manager Resume</div>
+        <div class="port-desc">ATS-optimized 2-page resume with quantified achievements and keyword-rich summary.</div>
+      </div>
+    </div>
+
+    <div class="port-card">
+      <div class="port-preview" style="background:#1B3A60;">
+        <div class="mini-resume">
+          <div class="mr-head">
+            <div class="mr-av">SR</div>
+            <div class="mr-n">Sarah Roberts</div>
+            <div class="mr-r">Financial Analyst</div>
+          </div>
+          <div class="mr-body">
+            <div class="mr-s">Summary</div><div class="mr-d"></div>
+            <div class="mr-t">CFA candidate with 5 yrs in investment banking and portfolio management.</div>
+            <div class="mr-s">Experience</div><div class="mr-d"></div>
+            <div class="mr-jt">Analyst — Goldman Sachs</div>
+            <div class="mr-bul">Managed $200M equity portfolio</div>
+            <div class="mr-bul">Reduced reporting time by 40%</div>
+            <div class="mr-s" style="margin-top:4px;">Skills</div><div class="mr-d"></div>
+            <div class="mr-pills"><span class="mr-pill">Excel</span><span class="mr-pill">Bloomberg</span><span class="mr-pill">Python</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="port-info">
+        <div class="port-tag">Finance · Mid Level</div>
+        <div class="port-title">Financial Analyst Resume</div>
+        <div class="port-desc">Corporate-style resume with finance-specific ATS keywords and metrics-driven bullet points.</div>
+      </div>
+    </div>
+
+    <div class="port-card">
+      <div class="port-preview light">
+        <div class="mini-resume">
+          <div class="mr-head">
+            <div class="mr-av">MK</div>
+            <div class="mr-n">Maria Khan</div>
+            <div class="mr-r">Marketing Manager</div>
+          </div>
+          <div class="mr-body">
+            <div class="mr-s">Summary</div><div class="mr-d"></div>
+            <div class="mr-t">Creative marketer with 6 yrs growing D2C brands via digital campaigns.</div>
+            <div class="mr-s">Experience</div><div class="mr-d"></div>
+            <div class="mr-jt">Marketing Lead — BrandCo</div>
+            <div class="mr-bul">Grew Instagram 0 → 200K</div>
+            <div class="mr-bul">ROI ↑320% on paid campaigns</div>
+            <div class="mr-s" style="margin-top:4px;">Skills</div><div class="mr-d"></div>
+            <div class="mr-pills"><span class="mr-pill">SEO</span><span class="mr-pill">Meta Ads</span><span class="mr-pill">HubSpot</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="port-info">
+        <div class="port-tag">Marketing · Mid Level</div>
+        <div class="port-title">Marketing Manager Resume</div>
+        <div class="port-desc">Modern resume highlighting growth metrics, campaign ROI, and digital marketing tools.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="test-header">
+    <div class="section-tag">Client Reviews</div>
+    <h2 class="section-title">What Clients Say</h2>
+    <p class="section-sub" style="margin:0 auto;">Real feedback from real people who landed real jobs.</p>
+  </div>
+  <div class="test-grid">
+
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <div class="test-text">"Got 3 interview calls within a week of uploading my new resume. The ATS optimization is real — I could see the difference immediately."</div>
+      <div class="test-author">
+        <div class="test-av">SR</div>
+        <div><div class="test-name">Sarah R.</div><div class="test-role">Software Engineer · New York</div></div>
+      </div>
+    </div>
+
+    <div class="test-card featured">
+      <div class="test-stars">★★★★★</div>
+      <div class="test-text">"Absolutely professional. The cover letter felt personal and genuine — not templated at all. Landed my dream PM role within 2 weeks!"</div>
+      <div class="test-author">
+        <div class="test-av">MK</div>
+        <div><div class="test-name">Michael K.</div><div class="test-role">Product Manager · London</div></div>
+      </div>
+    </div>
+
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <div class="test-text">"I was applying for 3 months with no results. After Awais rewrote my resume, I had 5 interviews in 2 weeks. Life changing service!"</div>
+      <div class="test-author">
+        <div class="test-av">FH</div>
+        <div><div class="test-name">Fatima H.</div><div class="test-role">Financial Analyst · Dubai</div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-dots"></div>
+  <div class="contact-inner">
+    <div class="section-tag">Get Started</div>
+    <h2 class="section-title">Ready to Get Hired?</h2>
+    <p class="section-sub">Let's turn your experience into a resume that opens doors. Order now and get your professionally written resume delivered in as little as 24 hours.</p>
+    <div class="contact-btns">
+      <a href="https://www.fiverr.com" class="btn-white">Order on Fiverr →</a>
+      <a href="mailto:awais@email.com" class="btn-ghost">Send a Message</a>
+    </div>
+    <div class="contact-info">
+      <div class="contact-item"><div class="ci-label">Response Time</div><div class="ci-val">Within 1 hour</div></div>
+      <div class="contact-item"><div class="ci-label">Delivery</div><div class="ci-val">24h – 4 days</div></div>
+      <div class="contact-item"><div class="ci-label">Revisions</div><div class="ci-val">Unlimited (Premium)</div></div>
+      <div class="contact-item"><div class="ci-label">Rating</div><div class="ci-val">5.0 ★ on Fiverr</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Awais<span>.</span></div>
+  <div class="footer-copy">© 2026 Awais · Professional Resume Writer · All rights reserved</div>
+</footer>
+
+</body>
+</html>
